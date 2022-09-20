@@ -1,70 +1,101 @@
-# Getting Started with Create React App
+<h1 align="center">React Template</h1>
+<p align="center">Template para el desarrollo de proyectos en React.</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h2>Acerca del Proyecto</h2>
+El objetivo de este repositorio es proporcionar un proyecto base con las herramientas mínimas necesarias para el desarollo de un proyecto en React.
 
-## Available Scripts
+<h2>Herramientas</h2>
+Las siguientes herramientas fueron añadidas para mejorar la experiencia de desarrollo y para mantener una estructura consistente durante el desarrollo:
 
-In the project directory, you can run:
+- [Eslint](https://eslint.org/): Analiza estáticamente el código para encontrar errores rápidamente.
+- [Standard.js](https://standardjs.com/): Plantilla de configuración para ESLint.
+- [Prettier](https://prettier.io/): Formateador de código.
+- [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier): Desactiva todas las reglas que son innecesarias o que pueden entrar en conflicto con Prettier.
 
-### `npm start`
+<h2>Instrucciones</h2>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clonar el repositorio a un directorio local, utilizando el comando :
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+git clone [REPOSITORY_URL]
+```
 
-### `npm test`
+2. Instalat las dependencias del proyecto
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+npm install
+```
 
-### `npm run build`
+<h2>Detalle de la configuración</h2>
+1. Instalar eslint.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+npm i -D eslint
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Iniciar asistente de configuración de eslint.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+npx eslint --init
+```
 
-### `npm run eject`
+3. Instalar prettier.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+npm i -D prettier
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. Instalar extensiones ESLint y Prettier en el editor de código.
+5. Crear archivo .prettierrc con la siguiente configuración de ejemplo (puede ser modificada).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+{
+  "printWidth": 100,
+  "singleQuote": false,
+  "jsxSingleQuote": false,
+  "arrowParens": "avoid"
+}
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+6. Instalar extensión eslint-config-prettier.
 
-## Learn More
+```
+npm i -D eslint-config-prettier
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+7. Agregar extensión eslint-config-prettier al archivo .eslintrc.js
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+extends: [
+  "plugin:react/recommended",
+  "plugin:react/jsx-runtime", // Evita importar React.
+  "standard",
+  "eslint-config-prettier", // <=== extensión a agregar.
+]
+```
 
-### Code Splitting
+8. Activar configuración "Format On Save" en editor de código.
+9. Establecer a Prettier como "Default Formatter" en editor de código.
+10. Crear archivo .eslintignore con el siguiente contenido.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+dist
+```
 
-### Analyzing the Bundle Size
+11. Crear archivo .prettierignore.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+dist
+package-lock.json
+```
 
-### Making a Progressive Web App
+<h2>Adicionales</h2>
+Si se desea, se pueden agregar los siguientes scripts al archivo package.json, para correr el linter y formateador desde la consola:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+"scripts": {
+  ...
+  "format": "prettier --write .",
+  "lint": "eslint --fix . --ext .js,.jsx"
+}
+```
